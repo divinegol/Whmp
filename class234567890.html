@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHPM - The Triumphant Church</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Assetseverrthing/church_logo1-removebg-preview.png">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(
+                rgba(0, 68, 204, 0.7),
+                rgba(255, 69, 0, 0.7)
+            ), 
+            url('Assetseverrthing/daddy-great.jpg') no-repeat center/cover; /* Replace 'your-image.jpg' with your actual image path */
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: white;
+        }
+
+        p {
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            font-weight: bold;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            background: #f4f4f4;
+            color: #0044cc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hero button:hover {
+            background: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ff4500;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Live Chat Button */
+        .live-chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0044cc;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .live-chat-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Chat Box */
+        .chat-box {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .chat-header {
+            background: #0044cc;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .chat-header i {
+            margin-right: 8px;
+        }
+
+        .chat-header .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background: #f4f4f4;
+        }
+
+        .chat-messages .message {
+            margin-bottom: 10px;
+        }
+
+        .chat-messages .message.user {
+            text-align: right;
+            color: #0044cc;
+        }
+
+        .chat-messages .message.bot {
+            text-align: left;
+            color: #333;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background: #fff;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            background: #0044cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .chat-input button:hover {
+            background: #003399;
+        }
+                .hero {
+            background: url('your-hero-image.jpg') no-repeat center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+        
+        .hero-content {
+            position: relative;
+        }
+        
+        #search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        #search {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            width: 300px;
+            max-width: 80%;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        #search:focus {
+            border-color: #0044cc; /* Change border color on focus */
+        }
+        
+        #search::placeholder {
+            color: #333;
+        }
+        
+        button {
+            padding: 0.8rem 1.2rem;
+            background-color: #ff4500;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 1.2rem;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #e03e00;
+        }
+        
+        button i {
+            font-size: 1.2rem;
+        }
+        .hero {
+            background: url('your-hero-image.jpg') no-repeat center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+        
+        .hero-content {
+            position: relative;
+        }
+        
+        #search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        #search {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            width: 300px;
+            max-width: 80%;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        #search:focus {
+            border-color: #0044cc; /* Change border color on focus */
+        }
+        
+        #search::placeholder {
+            color: #333;
+        }
+        
+        button {
+            padding: 0.8rem 1.2rem;
+            background-color: #ff4500;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 1.2rem;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #e03e00;
+        }
+        
+        button i {
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+.hero {
+    background: url('albums-hero.jpg') no-repeat center/cover;
+    color: white;
+    text-align: center;
+    padding: 6rem 1rem;
+    background-position: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Album Section */
+#album-section {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #ffffff;
+}
+
+.toggle-menu-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: #0044cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-menu-btn:hover {
+    background-color: #003399;
+}
+
+.album-menu {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.album-menu.hidden {
+    display: none; /* Hide the album menu by default */
+}
+
+.album-menu h2 {
+    font-size: 2rem;
+    color: #0044cc;
+    margin-bottom: 1.5rem;
+}
+
+.album-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.album-list li {
+    text-align: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.album-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.album-list img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+footer a {
+    color: #ff4500;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Live Chat Button */
+.live-chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0044cc;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.live-chat-btn:hover {
+    transform: scale(1.1);
+}
+
+/* WhatsApp Live Chat Button */
+.live-chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366; /* WhatsApp green */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.live-chat-btn:hover {
+    transform: scale(1.1);
+    background: #1EBE58; /* Slightly darker WhatsApp green */
+}
+
+
+
+.toggle-menu-btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            background: #0044cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .toggle-menu-btn:hover {
+            background-color: #003399;
+        }
+
+        .menu-content {
+            display: none;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #0044cc;
+            border-radius: 8px;
+            margin: 0 auto 2rem;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-content img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        #search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        #search {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            width: 300px;
+            max-width: 80%;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        #search::placeholder {
+            color: #333;
+        }
+
+        #search:focus {
+            border-color: #0044cc;
+        }
+
+        button {
+            padding: 0.8rem 1.2rem;
+            background-color: #ff4500;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #e03e00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <!-- Home Page Link with Icon -->
+<a href="class234567890.html"><i class="fas fa-home"></i> Home</a>
+
+<!-- About Page Link with Icon -->
+<a href="aboutwebsite.html"><i class="fas fa-info-circle"></i> About</a>
+
+<!-- Contact Page Link with Icon -->
+<a href="Contactwebsite.html"><i class="fas fa-phone-alt"></i> Contact</a>
+
+<!-- Services Page Link with Icon -->
+<a href="serviceswebsite.html"><i class="fas fa-cogs"></i> Services</a>
+</nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to WHPM</h1>
+        <p>Empowering lives through the Word of God.</p>
+        <button onclick="window.location.href='#about'">Learn More</button>
+   
+    <!-- Open Menu Button -->
+    <button class="toggle-menu-btn" id="toggleMenuBtn">Open Menu</button>
+
+    <!-- Menu Content -->
+    <div class="menu-content" id="menuContent">
+        <h2>Menu</h2>
+        <ul>
+            <li>
+                Sunday Service
+                <img src="Assetseverrthing/sunday service.jpg" alt="Sunday Service">
+            </li>
+            <li>
+                Bible Study
+                <img src="Assetseverrthing/bible study.jpg" alt="Bible Study">
+            </li>
+            <li>
+                Prayer Meetings
+                <img src="Assetseverrthing/prayer meeting.jpg" alt="Prayer Meetings">
+            </li>
+            <li>
+                Community Outreach
+                <img src="Assetseverrthing/community out reach.jpg" alt="Community Outreach">
+            </li>
+        </ul>
+    </div>
+
+
+    
+
+
+            <!-- Global Search Bar -->
+            <form id="search-form" action="javascript:void(0);">
+                <input type="text" id="search" name="query" placeholder="Search our site..." aria-label="Search">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </section>
+   <br>
+  <br>
+     <br>
+    <br>
+    <br>
+    <!-- Content Sections (Home, About, Services, Contact) -->
+    <section id="home">
+        <h2>Welcome to the Home Page</h2>
+        <p>This is the home page of WHPM, where you can find the latest updates and information.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are Word of His Power Ministries, dedicated to spreading the word of God.</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>We offer a variety of services including Sunday services, Bible study, and prayer meetings.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Get in touch with us via phone or email for more information.</p>
+    </section>
+
+
+
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 WHPM - The Triumphant Church. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </p>
+    </footer>
+
+    <!-- Live Chat Button -->
+    <div class="live-chat-btn" id="chatBtn">
+        <i class="fas fa-comments"></i>
+    </div>
+<!-- Live Chat Button -->
+<a
+    href="https://wa.me/2348038137180?text=Hello%20WHPM!%20I%20would%20like%20to%20ask%20about..."
+    class="live-chat-btn"
+    target="_blank"
+    id="chatBtn"
+    title="Chat with us on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+
+    <!-- Chat Box -->
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <i class="fas fa-comment-dots"></i> Live Chat
+            <button class="close-btn" id="closeChat">&times;</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">Hello! Please enter your phone number so we can assist you.</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const chatBtn = document.getElementById('chatBtn');
+        const chatBox = document.getElementById('chatBox');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Open Chat Box
+        chatBtn.addEventListener('click', () => {
+            chatBox.style.display = 'flex';
+        });
+
+        // Close Chat Box
+        closeChat.addEventListener('click', () => {
+            chatBox.style.display = 'none';
+        });
+
+        // Send Message
+        sendBtn.addEventListener('click', () => {
+            const userMessage = chatInput.value.trim();
+
+            if (userMessage) {
+                // Add user message
+                const userMessageElement = document.createElement('div');
+                userMessageElement.classList.add('message', 'user');
+                userMessageElement.textContent = userMessage;
+                chatMessages.appendChild(userMessageElement);
+
+                // Clear input
+                chatInput.value = '';
+
+                // Add bot response
+                setTimeout(() => {
+                    const botMessageElement = document.createElement('div');
+                    botMessageElement.classList.add('message', 'bot');
+                    if (!isNaN(userMessage)) {
+                        botMessageElement.textContent = "Thank you for providing your number. How can we assist you?";
+                    } else {
+                        botMessageElement.textContent = "Please provide a valid phone number to proceed.";
+                    }
+                    chatMessages.appendChild(botMessageElement);
+
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        });
+
+        // Send message on Enter key press
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendBtn.click();
+            }
+        });    
+        // JavaScript to handle search functionality across sections
+
+        // Function to perform the search
+        document.getElementById('search-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            let query = document.getElementById('search').value.toLowerCase(); // Get the search query
+            let sections = document.querySelectorAll('section'); // Get all sections (Home, About, Services, Contact)
+
+            // Loop through all sections
+            sections.forEach(section => {
+                let sectionText = section.innerText.toLowerCase(); // Get the text of each section
+                if (sectionText.includes(query)) {
+                    section.style.display = 'block'; // Show section if it contains the query
+                } else {
+                    section.style.display = 'none'; // Hide section if it doesn't match the query
+                }
+            });
+        });
+
+            // Toggle Menu
+    const toggleMenuBtn = document.getElementById('toggleMenuBtn');
+    const menuContent = document.getElementById('menuContent');
+
+    toggleMenuBtn.addEventListener('click', () => {
+        if (menuContent.style.display === 'none' || menuContent.style.display === '') {
+            menuContent.style.display = 'block';
+            toggleMenuBtn.textContent = 'Close Menu';
+        } else {
+            menuContent.style.display = 'none';
+            toggleMenuBtn.textContent = 'Open Menu';
+        }
+    });
+
+
+
+        
+    </script>
+</body>
+</html>

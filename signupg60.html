@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - WHPM</title>
+    <link rel="stylesheet" href="Assetseverrthing/signpg.css"> <!-- External CSS file -->
+    <link rel="icon" href="Assetseverrthing/church_logo1-removebg-preview.png">
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Signup to Join WHPM</h1>
+            <p>Become part of our growing community and stay connected with us.</p>
+        </div>
+    </section>
+
+    <!-- Signup Form Section -->
+    <section id="signup">
+        <h2>Create Your Account</h2>
+        <p>Please fill out the form below to create your account.</p>
+        <form class="signup-form" action="/submit-signup" method="POST">
+            <input type="text" name="fullname" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </section>
+
+    <section id="signup">
+        <h2>Already Have An Account</h2>
+        <p>Please fill out the form below to login to your account.</p>
+        <form class="signup-form" action="loging60.html" method="POST">
+             <button type="submit">Login In:</button>
+        </form>
+    </section>
+ 
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 WHPM - The Triumphant Church. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://facebook.com/whpmekpoma" target="_blank">Facebook</a> |
+            <a href="https://wa.me/+2348038137180" target="_blank">WhatsApp</a>
+        </p>
+    </footer>
+
+    <!-- Live Chat Button -->
+    <div class="live-chat-btn" id="chatBtn">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <script>
+        // JavaScript for live chat functionality
+        const chatBtn = document.getElementById("chatBtn");
+        const chatBox = document.getElementById("chatBox");
+        const closeChat = document.getElementById("closeChat");
+        const chatMessages = document.getElementById("chatMessages");
+        const chatInput = document.getElementById("chatInput");
+        const sendChat = document.getElementById("sendChat");
+
+        chatBtn.addEventListener("click", () => {
+            chatBox.classList.toggle("hidden");
+        });
+
+        closeChat.addEventListener("click", () => {
+            chatBox.classList.add("hidden");
+        });
+
+        sendChat.addEventListener("click", () => {
+            const userMessage = chatInput.value.trim();
+            if (userMessage) {
+                const userChat = document.createElement("div");
+                userChat.classList.add("message", "user");
+                userChat.textContent = userMessage;
+                chatMessages.appendChild(userChat);
+                chatInput.value = "";
+
+                setTimeout(() => {
+                    const botReply = document.createElement("div");
+                    botReply.classList.add("message", "bot");
+                    botReply.textContent = "Thank you for reaching out! We'll get back to you shortly.";
+                    chatMessages.appendChild(botReply);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        });
+
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - WHPM</title>
+    <link rel="stylesheet" href="Assetseverrthing/app3.css"> <!-- Unique CSS for the Contact Page -->
+    <link rel="icon" href="Assetseverrthing/church_logo1-removebg-preview.png">
+
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            
+                <!-- Home Page Link with Icon -->
+<a href="class234567890.html"><i class="fas fa-home"></i> Home</a>
+
+<!-- About Page Link with Icon -->
+<a href="aboutwebsite.html"><i class="fas fa-info-circle"></i> About</a>
+
+<!-- Contact Page Link with Icon -->
+<a href="Contactwebsite.html"><i class="fas fa-phone-alt"></i> Contact</a>
+
+<!-- Services Page Link with Icon -->
+<a href="serviceswebsite.html"><i class="fas fa-cogs"></i> Services</a>
+ 
+        </nav>
+    </header>
+
+    <!-- Hero Section for Contact Page -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>We would love to hear from you!</p>
+            <button onclick="window.location.href='#contact'">Get in Touch</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <p>If you have any questions or need assistance, feel free to reach out to us. Our team is here to help!</p>
+
+        <div class="contact-form">
+            <form action="" method="post">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit"><a href="https://wa.me/+2348059721979"> Send Message</a></button>
+        </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 WHPM - The Triumphant Church. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://facebook.com/whpmekpoma" target="_blank"><i class="fab fa-facebook"></i>Facebook</a> |
+            <a href="https://wa.me/+2348059721979" target="_blank">WhatsApp</a>
+        </p>
+    </footer>
+
+    <!-- Live Chat Button -->
+    <div class="live-chat-btn" id="chatBtn">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <script>
+        // Live Chat JavaScript
+        const chatBtn = document.getElementById("chatBtn");
+        const chatBox = document.getElementById("chatBox");
+        const closeChat = document.getElementById("closeChat");
+        const chatMessages = document.getElementById("chatMessages");
+        const chatInput = document.getElementById("chatInput");
+        const sendChat = document.getElementById("sendChat");
+
+        chatBtn.addEventListener("click", () => {
+            chatBox.classList.toggle("hidden");
+        });
+
+        closeChat.addEventListener("click", () => {
+            chatBox.classList.add("hidden");
+        });
+
+        sendChat.addEventListener("click", () => {
+            const userMessage = chatInput.value.trim();
+            if (userMessage) {
+                const userChat = document.createElement("div");
+                userChat.classList.add("message", "user");
+                userChat.textContent = userMessage;
+                chatMessages.appendChild(userChat);
+                chatInput.value = "";
+
+                setTimeout(() => {
+                    const botReply = document.createElement("div");
+                    botReply.classList.add("message", "bot");
+                    botReply.textContent = "Thank you for reaching out! We'll get back to you shortly.";
+                    chatMessages.appendChild(botReply);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        });
+    </script>
+
+</body>
+</html>

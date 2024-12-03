@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - WHPM</title>
+    <link rel="stylesheet" href="Assetseverrthing/app1.css"> <!-- Unique CSS file for the About Page -->
+    <link rel="icon" href="Assetseverrthing/church_logo1-removebg-preview.png">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            
+               <!-- Home Page Link with Icon -->
+<a href="class234567890.html"><i class="fas fa-home"></i> Home</a>
+
+<!-- About Page Link with Icon -->
+<a href="aboutwebsite.html"><i class="fas fa-info-circle"></i> About</a>
+
+<!-- Contact Page Link with Icon -->
+<a href="Contactwebsite.html"><i class="fas fa-phone-alt"></i> Contact</a>
+
+<!-- Services Page Link with Icon -->
+<a href="serviceswebsite.html"><i class="fas fa-cogs"></i> Services</a>
+ 
+        </nav>
+    </header>
+
+    <!-- Hero Section for About Page -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About WHPM</h1>
+            <p>Empowering lives through the Word of God.</p>
+            <button onclick="window.location.href='#about'">Learn More</button>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <h2>Our Mission</h2>
+        <p>At WHPM, our goal is to spread the word of God and help empower individuals to lead victorious lives through faith in Jesus Christ. We are committed to uplifting our community with the teachings of the Bible. Our ministry aims to build a strong Christian foundation, enabling all who join us to grow spiritually and contribute to the advancement of God's Kingdom.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 WHPM - The Triumphant Church. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://facebook.com/whpmekpoma" target="_blank">Facebook</a> |
+            <a href="https://wa.me/+2348038137180" target="_blank">WhatsApp</a>
+        </p>
+    </footer>
+
+    <!-- Live Chat Button -->
+    <div class="live-chat-btn" id="chatBtn">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <script>
+        // Live Chat JavaScript
+        const chatBtn = document.getElementById("chatBtn");
+        const chatBox = document.getElementById("chatBox");
+        const closeChat = document.getElementById("closeChat");
+        const chatMessages = document.getElementById("chatMessages");
+        const chatInput = document.getElementById("chatInput");
+        const sendChat = document.getElementById("sendChat");
+
+        chatBtn.addEventListener("click", () => {
+            chatBox.classList.toggle("hidden");
+        });
+
+        closeChat.addEventListener("click", () => {
+            chatBox.classList.add("hidden");
+        });
+
+        sendChat.addEventListener("click", () => {
+            const userMessage = chatInput.value.trim();
+            if (userMessage) {
+                const userChat = document.createElement("div");
+                userChat.classList.add("message", "user");
+                userChat.textContent = userMessage;
+                chatMessages.appendChild(userChat);
+                chatInput.value = "";
+
+                setTimeout(() => {
+                    const botReply = document.createElement("div");
+                    botReply.classList.add("message", "bot");
+                    botReply.textContent = "Thank you for reaching out! We'll get back to you shortly.";
+                    chatMessages.appendChild(botReply);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
